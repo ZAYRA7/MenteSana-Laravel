@@ -3,14 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mente Sana - @yield('title')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>MenteSana - @yield('title')</title>
+
+    <!-- Bootstrap 5 CSS CDN (¡Esto es lo que faltaba!) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: #FAFAFC; 
+        }
+        .navbar-custom { 
+            background-color: #4A2E80; /* Morado oficial */
+        }
+        .footer-custom { 
+            background-color: #1a1333; 
+            color: white; 
+        }
+    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg shadow-sm mb-4" style="background-color: #4A90A4;">
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4 py-3">
         <div class="container">
-            <a class="navbar-brand text-white fw-bold" href="{{ url('/') }}">
-                🧠 Mente Sana
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center gap-2" href="{{ url('/') }}">
+                🧠 MenteSana
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>
@@ -18,20 +39,19 @@
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/') }}">Inicio</a>
+                        <a class="nav-link text-white" href="{{ route('citas.index') }}">Lista de Citas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/citas') }}">Citas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ url('/citas/create') }}">Agendar Cita</a>
+                        <a class="nav-link text-white" href="{{ route('citas.create') }}">Agendar Cita</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container flex-grow-1">
+        <!-- Mensajes de éxito/error -->
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -47,13 +67,17 @@
         @endif
 
         @yield('content')
-    </div>
+    </main>
 
-    <footer class="mt-5 py-4" style="background-color: #F0F8FA;">
-        <div class="container text-center">
-            <p class="mb-1 fw-bold" style="color: #4A90A4;">🧠 Mente Sana</p>
-            <p class="small text-muted mb-0">Proyecto en equipo — Aplicaciones Web 2026</p>
+    <!-- FOOTER -->
+    <footer class="footer-custom mt-auto py-4 text-center">
+        <div class="container">
+            <p class="mb-1 fw-bold">🧠 MenteSana</p>
+            <p class="small text-muted mb-0" style="color: #c4b8e8 !important;">Proyecto en equipo — Aplicaciones Web 2026</p>
         </div>
     </footer>
+
+    <!-- Bootstrap 5 JS Bundle (¡Necesario para que funcione el menú de hamburguesa!) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

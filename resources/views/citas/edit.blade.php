@@ -3,50 +3,50 @@
 @section('title', 'Editar Cita')
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                    <h3 class="fw-bold mb-4" style="color: #4A2E80;">Editar Cita</h3>
-
-                    <form action="{{ route('citas.update', $cita['id']) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="mb-3">
-                            <label class="form-label fw-medium">Paciente</label>
-                            <input type="text" name="paciente" class="form-control" value="{{ $cita['paciente'] }}"
-                                required>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h3 class="fw-bold mb-4" style="color: #4A2E80;">Editar Cita</h3>
+                <form action="{{ route('citas.update', $cita) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label class="form-label">Paciente</label>
+                        <input type="text" name="paciente" class="form-control @error('paciente') is-invalid @enderror" value="{{ old('paciente', $cita->paciente) }}">
+                        @error('paciente') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Fecha</label>
+                            <input type="date" name="fecha" class="form-control @error('fecha') is-invalid @enderror" value="{{ old('fecha', $cita->fecha) }}">
+                            @error('fecha') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-medium">Fecha</label>
-                                <input type="date" name="fecha" class="form-control" value="{{ $cita['fecha'] }}"
-                                    required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-medium">Hora</label>
-                                <input type="time" name="hora" class="form-control" value="{{ $cita['hora'] }}"
-                                    required>
-                            </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Hora</label>
+                            <input type="time" name="hora" class="form-control @error('hora') is-invalid @enderror" value="{{ old('hora', $cita->hora) }}">
+                            @error('hora') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-medium">Psicólogo</label>
-                            <select name="psicologo" class="form-select" required>
-                                <option value="Ps. María Gómez"
-                                    {{ $cita['psicologo'] == 'Ps. María Gómez' ? 'selected' : '' }}>Ps. María Gómez</option>
-                                <option value="Dr. Carlos Mendoza"
-                                    {{ $cita['psicologo'] == 'Dr. Carlos Mendoza' ? 'selected' : '' }}>Dr. Carlos Mendoza
-                                </option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100"
-                            style="background-color: #4A2E80; border: none;">
-                            Actualizar Cita
-                        </button>
-                    </form>
-
-                </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Psicólogo</label>
+                        <input type="text" name="psicologo" class="form-control @error('psicologo') is-invalid @enderror" value="{{ old('psicologo', $cita->psicologo) }}">
+                        @error('psicologo') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Estado</label>
+                        <select name="estado" class="form-select @error('estado') is-invalid @enderror">
+                            <option value="Pendiente" {{ old('estado', $cita->estado) == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                            <option value="Confirmada" {{ old('estado', $cita->estado) == 'Confirmada' ? 'selected' : '' }}>Confirmada</option>
+                            <option value="Cancelada" {{ old('estado', $cita->estado) == 'Cancelada' ? 'selected' : '' }}>Cancelada</option>
+                        </select>
+                        @error('estado') <div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: #4A2E80; border: none;">Actualizar Cita</button>
+                    <a href="{{ route('citas.index') }}" class="btn btn-secondary w-100 mt-2">Cancelar</a>
+                </form>
             </div>
         </div>
     </div>
+</div>
 @endsection

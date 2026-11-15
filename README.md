@@ -41,9 +41,9 @@ Sigue estos pasos para clonar y ejecutar el proyecto localmente:
 
 1. **Clonar el repositorio:**
    `bash
-    git clone [https://github.com/tu-usuario/mente-sana.git](https://github.com/tu-usuario/mente-sana.git)
-    cd mente-sana
-    `
+git clone [https://github.com/tu-usuario/mente-sana.git](https://github.com/tu-usuario/mente-sana.git)
+cd mente-sana
+`
    Instalar dependencias de PHP:
 
 Bash
@@ -127,3 +127,49 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 License
 The Laravel framework is open-sourced software licensed under the MIT license.
+
+## Integrantes del Equipo
+
+| Nombre      | Rol           |
+| :---------- | :------------ |
+| **Zayra**   | Líder Técnica |
+| **Armando** | Frontend      |
+| **Farid**   | Backend       |
+| **Karina**  | Backend       |
+| **Abril**   | Analista      |
+
+---
+
+## Evidencia 1: Configuración de PostgreSQL y CRUD de Citas
+
+Como líder técnica, me encargué de la configuración inicial de la base de datos y del primer CRUD completo del sistema para demostrar el funcionamiento de la arquitectura.
+
+### 1. Configuración de la Base de Datos
+
+- Se configuró el archivo `.env` para usar PostgreSQL (`DB_CONNECTION=pgsql`).
+- Se actualizó el `.env.example` sin credenciales reales por seguridad.
+- Se creó la base de datos `mentesana_db` desde pgAdmin.
+- Se ejecutaron las migraciones exitosamente con `php artisan migrate`.
+
+**Evidencia de migración:**
+
+![Captura de terminal mostrando la migración exitosa](img/migracion-db.png)
+
+### 2. CRUD de Citas (Create, Read, Update, Delete)
+
+Se implementó el CRUD completo para la entidad **Cita** usando el patrón MVC:
+
+- **Modelo:** `Cita.php` con `$fillable`.
+- **Migración:** Tabla `citas` con campos (paciente, fecha, hora, psicólogo, estado).
+- **Controlador:** `CitaController.php` usando `Route::resource`.
+- **Validación:** FormRequests (`StoreCitaRequest` y `UpdateCitaRequest`) con reglas `required`, `max`, `date` e `in`.
+- **Vistas Blade:** `index`, `create` y `edit` con diseño responsivo de la Guía de Estilo MenteSana.
+
+**Evidencia del CRUD funcionando:**
+![Captura de la tabla de citas](img/crud-citas.png)
+
+### 3. Validación y Retroalimentación
+
+- Los formularios incluyen `@csrf` y `@method('PUT')` en la edición.
+- Los errores se muestran con `@error` al lado de cada campo y se conservan los datos con `old()`.
+- Se muestran mensajes de éxito con `session()->with('success')`.

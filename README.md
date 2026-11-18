@@ -221,3 +221,57 @@ CRUD completo para la gestión de horarios del psicólogo.
 - **Formulario crear:** ![Formulario crear horario](docs/capturas/horarios-crear.png)
 - **Formulario editar:** ![Formulario editar horario](docs/capturas/horarios-editar.png)
 - **Migración ejecutada:** ![Migración ejecutada](docs/capturas/migracion-horarios.png)
+
+## Gestión de Herramientas (Abril)
+
+### Descripción
+
+CRUD completo para la gestión de herramientas de apoyo (recursos, enlaces y material) disponibles para el alumno.
+
+### Estructura de la tabla `herramientas`
+
+| Campo       | Tipo   | Descripción                       |
+| :---------- | :----- | :-------------------------------- |
+| id          | bigint | Identificador                     |
+| titulo      | string | Nombre de la herramienta          |
+| tipo        | string | Categoría (video, artículo, etc.) |
+| enlace      | string | URL del recurso                   |
+| descripcion | text   | Descripción detallada             |
+| timestamps  | -      | `created_at` y `updated_at`       |
+
+### Rutas
+
+| Método    | URI                                     | Nombre               | Acción                 |
+| :-------- | :-------------------------------------- | :------------------- | :--------------------- |
+| GET       | /alumno/herramientas                    | herramientas.index   | Listar con paginación  |
+| GET       | /alumno/herramientas/create             | herramientas.create  | Formulario de creación |
+| POST      | /alumno/herramientas                    | herramientas.store   | Guardar herramienta    |
+| GET       | /alumno/herramientas/{herramienta}/edit | herramientas.edit    | Formulario de edición  |
+| PUT/PATCH | /alumno/herramientas/{herramienta}      | herramientas.update  | Actualizar herramienta |
+| DELETE    | /alumno/herramientas/{herramienta}      | herramientas.destroy | Eliminar herramienta   |
+
+### Funcionalidad
+
+- Listado con paginación (10 por página)
+- Validación con `HerramientaRequest` (campos obligatorios y enlace con formato URL)
+- Mensajes de éxito y de error en español
+- Confirmación antes de eliminar
+
+### Evidencia
+
+- **Listado:** ![Listado de herramientas](docs/capturas/herramientas-index.png)
+- **Crear:** ![Formulario crear herramienta](docs/capturas/herramientas-create.png)
+- **Validación:** ![Validación de herramientas](docs/capturas/herramientas-validacion.png)
+- **Editar:** ![Formulario editar herramienta](docs/capturas/herramientas-edit.png)
+- **Eliminar:** ![Eliminar herramienta](docs/capturas/herramientas-eliminar.png)
+- **Paginación:** ![Paginación de herramientas](docs/capturas/herramientas-paginacion.png)
+
+## Reporte de Pruebas
+
+| Módulo       | Listar | Crear | Validación | Editar | Eliminar | Observaciones                                                    |
+| :----------- | :----: | :---: | :--------: | :----: | :------: | :--------------------------------------------------------------- |
+| Herramientas |   ✅   |  ✅   |     ✅     |   ✅   |    ✅    | Se corrigió `authorize()` del FormRequest (403)                  |
+| Horarios     |   ✅   |  ✅   |     ✅     |   ⚠️   |    ✅    | Editar fallaba por formato de hora `H:i:s` vs `H:i`              |
+| Citas        |   ⚠️   |   -   |     -      |   -    |    -     | `CitaController@index` no enviaba `$alumnos` paginado a la vista |
+| Alumnos      |   ❌   |  ❌   |     -      |   -    |    -     | Faltan las vistas en `resources/views/psicologo/alumnos`         |
+| Eventos      |   -    |   -   |     -      |   -    |    -     | Pendiente de probar                                              |

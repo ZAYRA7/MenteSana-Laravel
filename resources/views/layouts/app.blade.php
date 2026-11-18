@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MenteSana - @yield('title')</title>
 
-    <!-- Bootstrap 5 CSS CDN (¡Esto es lo que faltaba!) -->
+    <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Google Fonts Roboto -->
@@ -37,12 +37,25 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarMain">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <!-- Módulo: Citas (Zayra) -->
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('citas.index') }}">Lista de Citas</a>
                     </li>
+                    
+                    <!-- Módulo: Alumnos (Karina) -->
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('citas.create') }}">Agendar Cita</a>
+                        <a class="nav-link text-white" href="{{ route('alumnos.index') }}">Alumnos</a>
+                    </li>
+
+                    <!-- Módulo: Horarios (Armando) -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('psicologo.horarios.index') }}">Horarios</a>
+                    </li>
+
+                    <!-- Módulo: Eventos (Farid) -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('eventos.index') }}">Eventos</a>
                     </li>
                 </ul>
             </div>

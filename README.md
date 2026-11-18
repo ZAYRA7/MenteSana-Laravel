@@ -221,3 +221,41 @@ CRUD completo para la gestión de horarios del psicólogo.
 - **Formulario crear:** ![Formulario crear horario](docs/capturas/horarios-crear.png)
 - **Formulario editar:** ![Formulario editar horario](docs/capturas/horarios-editar.png)
 - **Migración ejecutada:** ![Migración ejecutada](docs/capturas/migracion-horarios.png)
+
+---
+
+## Gestión de Alumnos en Seguimiento (Módulo Psicólogo)
+
+### Descripción
+
+Implementación del CRUD completo para la entidad **Alumno** dentro del módulo del psicólogo (`psicologo/alumnos`), permitiendo registrar, consultar, actualizar y dar de baja alumnos en seguimiento psicológico utilizando PostgreSQL y el diseño responsivo Bootstrap 5 del sistema.
+
+### Rutas
+
+- **Listado:** `/psicologo/alumnos` (`alumnos.index`)
+- **Crear:** `/psicologo/alumnos/create` (`alumnos.create`)
+- **Editar:** `/psicologo/alumnos/{alumno}/edit` (`alumnos.edit`)
+
+### Funcionalidad y Arquitectura
+
+- **Base de datos y Modelo:** Migración de la tabla `alumnos` (`matricula` única, `nombre`, `carrera`, `cuatrimestre`, `ultimo_animo`) y modelo `Alumno` con asignación masiva (`$fillable`).
+- **Controlador:** `AlumnoController` con paginación (`paginate(10)`) y mensajes flash (`with('success')`).
+- **Validación:** FormRequests (`StoreAlumnoRequest` y `UpdateAlumnoRequest` con regla `Rule::unique('alumnos')->ignore($this->alumno)` para permitir editar sin conflicto de matrícula).
+- **Vistas Blade:** `index`, `create` y `edit` ubicadas en `resources/views/psicologo/alumnos/`, con protección `@csrf`, directiva `@method('PUT')`, persistencia `old()` y alertas de error `@error`.
+
+### Evidencias
+
+- **Listado de alumnos y paginación (`/psicologo/alumnos`):**
+  ![Listado de alumnos](docs/capturas/alumnos-index.png)
+
+- **Registro y validación de matrícula única (`/psicologo/alumnos/create`):**
+  ![Crear alumno](docs/capturas/alumnos-create.png)
+  ![Crear alumno](docs/capturas/alumnos-confirmacion.png)
+
+- **Edición de alumno (`/psicologo/alumnos/{id}/edit`):**
+  ![Editar alumno](docs/capturas/alumnos-edit.png)
+
+- **Confirmación y retroalimentación al eliminar:**
+  ![Eliminar alumno](docs/capturas/alumnos-eliminar.png)
+
+---

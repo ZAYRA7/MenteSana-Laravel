@@ -35,6 +35,28 @@ Interfaz de modificación que permite reasignar horarios, fechas o psicólogos a
 
 ---
 
+## Evidencias – CRUD de Eventos (Issue #17)
+
+### Migración ejecutada en PostgreSQL
+
+![Migración](docs/capturas/migracion.png)
+
+### Listado de eventos (cards y paginación)
+
+![Index](docs/capturas/index.png)
+
+### Validación con FormRequest
+
+![Validación](docs/capturas/validacion.png)
+
+### Confirmación al eliminar
+
+![Eliminar](docs/capturas/eliminar.png)
+
+### Vista responsiva
+
+![Responsivo](docs/capturas/responsivo.png)
+
 ## 🛠️ Instrucciones de Instalación
 
 Sigue estos pasos para clonar y ejecutar el proyecto localmente:

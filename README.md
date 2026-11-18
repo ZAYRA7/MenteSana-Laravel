@@ -195,3 +195,29 @@ Se implementó el CRUD completo para la entidad **Cita** usando el patrón MVC:
 - Los formularios incluyen `@csrf` y `@method('PUT')` en la edición.
 - Los errores se muestran con `@error` al lado de cada campo y se conservan los datos con `old()`.
 - Se muestran mensajes de éxito con `session()->with('success')`.
+
+## Gestión de Horarios (Armando)
+
+### Descripción
+
+CRUD completo para la gestión de horarios del psicólogo.
+
+### Rutas
+
+- Índice: `/psicologo/horarios`
+- Crear: `/psicologo/horarios/create`
+- Editar: `/psicologo/horarios/{id}/edit`
+
+### Funcionalidad
+
+- Listado con paginación
+- Validación con FormRequest
+- Mensajes de notificación
+- Diseño responsivo con Bootstrap 5
+
+### Evidencia
+
+- **Vista principal:** ![Vista principal de horarios](docs/capturas/horarios-index.png)
+- **Formulario crear:** ![Formulario crear horario](docs/capturas/horarios-crear.png)
+- **Formulario editar:** ![Formulario editar horario](docs/capturas/horarios-editar.png)
+- **Migración ejecutada:** ![Migración ejecutada](docs/capturas/migracion-horarios.png)
